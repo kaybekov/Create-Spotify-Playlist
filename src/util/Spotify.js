@@ -1,5 +1,5 @@
-const clientId = 'ec7a6283c17745c58c7f4de475fd2f82';
-const redirectUri = 'http://localhost:3000/';
+const clientId = 'f3c42047696b4918ac0f8ab16ba237ca';
+const redirectUri = 'http://localhost:3000';
 
 let accessToken;
 
@@ -16,7 +16,7 @@ const Spotify = {
       accessToken = accessTokenMatch[1];
       const expiresIn = Number(expiresInMatch[1]);
       //This clears the parameters, allowing us to grab a new access token when it expires.
-      window.setTimeout(() => (accessToken = ''), expiresIn * 10000);
+      window.setTimeout(() => (accessToken = ''), expiresIn * 1000);
       window.history.pushState('Access Token', null, '/');
       return accessToken;
     } else {
