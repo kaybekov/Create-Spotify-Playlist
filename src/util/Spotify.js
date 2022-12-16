@@ -1,5 +1,5 @@
 const clientId = 'f3c42047696b4918ac0f8ab16ba237ca';
-const redirectUri = 'http://localhost:3000';
+const redirectUri = 'https://aesthetic-sprite-93a084.netlify.app/';
 
 let accessToken;
 
