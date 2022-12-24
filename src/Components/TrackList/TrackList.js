@@ -4,8 +4,8 @@ import './TrackList.css';
 
 import Track from '../Track/Track';
 
-class TrackList extends React.Component {
-  render() {
+const TrackList = () => {
+  
     return (
       <div className="TrackList">
         {this.props.tracks.map((track) => {
@@ -21,7 +21,7 @@ class TrackList extends React.Component {
         })}
       </div>
     );
-  }
+  
 }
 
 export default TrackList;
