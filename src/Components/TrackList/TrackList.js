@@ -4,8 +4,7 @@ import './TrackList.css';
 
 import Track from '../Track/Track';
 
-const TrackList = () => {
-  
+const TrackList = (props) =>{
     return (
       <div className="TrackList">
         {this.props.tracks.map((track) => {
@@ -13,9 +12,9 @@ const TrackList = () => {
             <Track
               track={track}
               key={track.id}
-              onAdd={this.props.onAdd}
-              onRemove={this.props.onRemove}
-              isRemoval={this.props.isRemoval}
+              onAdd={props.onAdd}
+              onRemove={props.onRemove}
+              isRemoval={props.isRemoval}
             />
           );
         })}
