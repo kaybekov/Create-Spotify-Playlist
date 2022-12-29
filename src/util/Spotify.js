@@ -1,5 +1,9 @@
-const clientId = 'f3c42047696b4918ac0f8ab16ba237ca';
-const redirectUri = 'https://aesthetic-sprite-93a084.netlify.app/';
+let userId;
+const clientId = 'ec7a6283c17745c58c7f4de475fd2f82';
+
+// 'f3c42047696b4918ac0f8ab16ba237ca';
+const redirectUri = 'http://localhost:3000';
+// 'https://aesthetic-sprite-93a084.netlify.app/';
 
 let accessToken;
 
@@ -25,6 +29,27 @@ const Spotify = {
       window.location = accessUrl;
     }
   },
+  getCurrentUserId() {
+    if (userId) {
+      return userId;
+    }
+
+    const accessToken = Spotify.getAccessToken();
+
+    return fetch('https://api.spotify.com/v1/me', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        userId = jsonResponse.id;
+        return userId;
+      })
+      .catch(function (err) {
+        console.log('Fetch problem line 47: ' + err.message);
+      });
+  },
   search(term) {
     const accessToken = Spotify.getAccessToken();
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
@@ -42,7 +67,7 @@ const Spotify = {
         return jsonResponse.tracks.items.map((track) => ({
           id: track.id,
           name: track.name,
-          artists: track.artists[0].name,
+          artist: track.artists[0].name,
           album: track.album.name,
           uri: track.uri,
         }));
