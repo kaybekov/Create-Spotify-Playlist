@@ -67,8 +67,7 @@ function App() {
   return (
     <div>
       <h1>
-      Aesthetic-sprite
-        {/* Ja<span className='highlight'>mmm</span>ing */}
+        Ja<span className='highlight'>mmm</span>ing
       </h1>
       <div className='App'>
         <SearchBar onSearch={search} />

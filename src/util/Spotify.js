@@ -1,9 +1,8 @@
 let userId;
-const clientId = 'ec7a6283c17745c58c7f4de475fd2f82';
+const clientId = 'f3c42047696b4918ac0f8ab16ba237ca';
 
-// 'f3c42047696b4918ac0f8ab16ba237ca';
-const redirectUri = 'http://localhost:3000';
-// 'https://aesthetic-sprite-93a084.netlify.app/';
+const redirectUri = 'https://aesthetic-sprite-93a084.netlify.app/';
+//  'http://localhost:3000';
 
 let accessToken;
 
@@ -60,7 +59,7 @@ const Spotify = {
       userId = response;
       return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
         headers: headers,
-        method: "GET",
+        method: 'GET',
       })
         .then((response) => response.json())
         .then((jsonResponse) => {
