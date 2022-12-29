@@ -5,7 +5,6 @@ const redirectUri = 'https://aesthetic-sprite-93a084.netlify.app/';
 //  'http://localhost:3000';
 
 let accessToken;
-
 const Spotify = {
   getAccessToken() {
     if (accessToken) {
