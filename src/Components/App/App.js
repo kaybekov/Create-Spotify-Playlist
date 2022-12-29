@@ -6,21 +6,23 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 
 import Spotify from '../../util/Spotify';
+import PlaylistList from '../PlaylistList/PlaylistList';
+
 function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [playlistName, setPlaylistName] = useState('New Playlist');
   const [playlistTracks, setPlaylistTracks] = useState([]);
-  const [userId, setUserId] = useState('');
+  const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
-    getUserId()
+    getUserPlaylists();
   }, []);
 
-  const getUserId = () => {
-    Spotify.getCurrentUserId().then((userId) => {
-      setUserId(userId);
+  const getUserPlaylists = () => {
+    Spotify.getUserPlaylists().then((playlists) => {
+      setPlaylists(playlists);
     });
-  }
+  };
 
   const addTrack = (track) => {
     let tracks = playlistTracks;
@@ -45,10 +47,15 @@ function App() {
 
   const savePlaylist = () => {
     const trackUris = playlistTracks.map((track) => track.uri);
-    Spotify.savePlaylist(playlistName, trackUris).then(() => {
-      setPlaylistName('New Game');
-      setPlaylistTracks([]);
-    });
+    if (trackUris && trackUris.length) {
+      Spotify.savePlaylist(playlistName, trackUris).then(() => {
+        getUserPlaylists();
+        setPlaylistName('New Game');
+        setPlaylistTracks([]);
+      });
+    } else {
+      alert('Your playlist is empty! Please add tracks.');
+    }
   };
 
   const search = (term) => {
@@ -60,7 +67,8 @@ function App() {
   return (
     <div>
       <h1>
-        Ja<span className='highlight'>mmm</span>ing
+      Aesthetic-sprite
+        {/* Ja<span className='highlight'>mmm</span>ing */}
       </h1>
       <div className='App'>
         <SearchBar onSearch={search} />
@@ -76,6 +84,7 @@ function App() {
             onSave={savePlaylist}
           />
         </div>
+        <PlaylistList playlists={playlists} />
       </div>
     </div>
   );

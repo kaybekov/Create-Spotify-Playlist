@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-# Checkout project https://aesthetic-sprite-93a084.netlify.app/
+### Checkout project https://aesthetic-sprite-93a084.netlify.app/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

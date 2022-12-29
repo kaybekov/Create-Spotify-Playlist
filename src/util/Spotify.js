@@ -50,6 +50,30 @@ const Spotify = {
         console.log('Fetch problem line 47: ' + err.message);
       });
   },
+  getUserPlaylists() {
+    const accessToken = Spotify.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+
+    return Promise.resolve(Spotify.getCurrentUserId()).then((response) => {
+      userId = response;
+      return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+        headers: headers,
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((jsonResponse) => {
+          if (!jsonResponse.items) {
+            return [];
+          }
+          return jsonResponse.items.map((playlist) => ({
+            playlistName: playlist.name,
+            playlistId: playlist.id,
+          }));
+        });
+    });
+  },
   search(term) {
     const accessToken = Spotify.getAccessToken();
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
