@@ -1,5 +1,5 @@
-# About Jammming
-[Jammming](https://aesthetic-sprite-93a084.netlify.app/) is a responsive react web app that uses the Spotify API to:
+# About Create-Spotify-Playlist
+[Create-Spotify-Playlist](https://aesthetic-sprite-93a084.netlify.app/) is a responsive react web app that uses the Spotify API to:
 - display the user's Spotify playlists
 - search for music tracks
 - create a playlist
